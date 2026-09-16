@@ -45,7 +45,7 @@ export function ProcessingDialog({
   return (
     <Dialog open={open}>
       <DialogContent
-        showCloseButton={false}
+        onEscapeKeyDown={(e) => e.preventDefault()}
         className="panel max-w-md border-border bg-card"
         aria-live="polite"
       >
