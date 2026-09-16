@@ -302,4 +302,4 @@ export const scenarios: Scenario[] = [
 ];
 
 export const getScenario = (id: string): Scenario =>
-  scenarios.find((s) => s.id === id) ?? scenarios[0];
+  scenarios.find((s) => s.id === id) ?? scenarios[0]!;

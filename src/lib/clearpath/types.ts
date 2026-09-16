@@ -22,10 +22,10 @@ export type EvidenceItem = {
   status: Exclude<EvidenceStatus, "MISSING">;
   confidence: number;
   detected: DetectedFact[];
-  issue?: string;
-  conflict?: { field: string; profileValue: string; evidenceValue: string };
+  issue?: string | undefined;
+  conflict?: { field: string; profileValue: string; evidenceValue: string } | undefined;
   updatedAt: string;
-  reviewerConfirmed?: boolean;
+  reviewerConfirmed?: boolean | undefined;
 };
 
 export type RequirementDef = {
@@ -83,7 +83,7 @@ export type Application = {
   evidence: EvidenceItem[];
   createdAt: string;
   reviewLog: ReviewEvent[];
-  escalated?: boolean;
+  escalated?: boolean | undefined;
 };
 
 export type AssessedRequirement = {
@@ -95,7 +95,7 @@ export type AssessedRequirement = {
   evidenceLabel: string;
   status: EvidenceStatus;
   confidence: number;
-  issue?: string;
+  issue?: string | undefined;
   explanation: string;
   nextAction: string;
 };

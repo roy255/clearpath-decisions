@@ -25,7 +25,7 @@ const nav = [
   { to: "/review" as const, label: "Review Queue", icon: Inbox },
 ];
 
-function NavList({ onNavigate }: { onNavigate?: () => void }) {
+function NavList({ onNavigate }: { onNavigate?: (() => void) | undefined }) {
   const queueCount = useClearPath(
     (s) => s.applications.filter((a) => needsReviewer(assess(a).decision.state)).length,
   );
@@ -59,7 +59,7 @@ function NavList({ onNavigate }: { onNavigate?: () => void }) {
   );
 }
 
-function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
+function SidebarContent({ onNavigate }: { onNavigate?: (() => void) | undefined }) {
   const active = useActiveApplication();
 
   return (
