@@ -10,15 +10,23 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApplicationsRouteImport } from './routes/applications'
 import { Route as ApplyRouteImport } from './routes/apply'
 import { Route as AssessmentRouteImport } from './routes/assessment'
 import { Route as DecisionsRouteImport } from './routes/decisions'
 import { Route as EvidenceRouteImport } from './routes/evidence'
+import { Route as OverviewRouteImport } from './routes/overview'
 import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as ReviewIndexRouteImport } from './routes/review.index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApplicationsRoute = ApplicationsRouteImport.update({
+  id: '/applications',
+  path: '/applications',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApplyRoute = ApplyRouteImport.update({
@@ -41,60 +49,102 @@ const EvidenceRoute = EvidenceRouteImport.update({
   path: '/evidence',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OverviewRoute = OverviewRouteImport.update({
+  id: '/overview',
+  path: '/overview',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProfileRoute = ProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ReviewIndexRoute = ReviewIndexRouteImport.update({
+  id: '/review/',
+  path: '/review/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/applications': typeof ApplicationsRoute
   '/apply': typeof ApplyRoute
   '/assessment': typeof AssessmentRoute
   '/decisions': typeof DecisionsRoute
   '/evidence': typeof EvidenceRoute
+  '/overview': typeof OverviewRoute
   '/profile': typeof ProfileRoute
+  '/review/': typeof ReviewIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/applications': typeof ApplicationsRoute
   '/apply': typeof ApplyRoute
   '/assessment': typeof AssessmentRoute
   '/decisions': typeof DecisionsRoute
   '/evidence': typeof EvidenceRoute
+  '/overview': typeof OverviewRoute
   '/profile': typeof ProfileRoute
+  '/review': typeof ReviewIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/applications': typeof ApplicationsRoute
   '/apply': typeof ApplyRoute
   '/assessment': typeof AssessmentRoute
   '/decisions': typeof DecisionsRoute
   '/evidence': typeof EvidenceRoute
+  '/overview': typeof OverviewRoute
   '/profile': typeof ProfileRoute
+  '/review/': typeof ReviewIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/apply' | '/assessment' | '/decisions' | '/evidence' | '/profile'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/apply' | '/assessment' | '/decisions' | '/evidence' | '/profile'
-  id:
-    | '__root__'
     | '/'
+    | '/applications'
     | '/apply'
     | '/assessment'
     | '/decisions'
     | '/evidence'
+    | '/overview'
     | '/profile'
+    | '/review/'
+  fileRoutesByTo: FileRoutesByTo
+  to:
+    | '/'
+    | '/applications'
+    | '/apply'
+    | '/assessment'
+    | '/decisions'
+    | '/evidence'
+    | '/overview'
+    | '/profile'
+    | '/review'
+  id:
+    | '__root__'
+    | '/'
+    | '/applications'
+    | '/apply'
+    | '/assessment'
+    | '/decisions'
+    | '/evidence'
+    | '/overview'
+    | '/profile'
+    | '/review/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApplicationsRoute: typeof ApplicationsRoute
   ApplyRoute: typeof ApplyRoute
   AssessmentRoute: typeof AssessmentRoute
   DecisionsRoute: typeof DecisionsRoute
   EvidenceRoute: typeof EvidenceRoute
+  OverviewRoute: typeof OverviewRoute
   ProfileRoute: typeof ProfileRoute
+  ReviewIndexRoute: typeof ReviewIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -104,6 +154,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/applications': {
+      id: '/applications'
+      path: '/applications'
+      fullPath: '/applications'
+      preLoaderRoute: typeof ApplicationsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/apply': {
@@ -134,6 +191,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EvidenceRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/overview': {
+      id: '/overview'
+      path: '/overview'
+      fullPath: '/overview'
+      preLoaderRoute: typeof OverviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/profile': {
       id: '/profile'
       path: '/profile'
@@ -141,16 +205,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProfileRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/review/': {
+      id: '/review/'
+      path: '/review'
+      fullPath: '/review/'
+      preLoaderRoute: typeof ReviewIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApplicationsRoute: ApplicationsRoute,
   ApplyRoute: ApplyRoute,
   AssessmentRoute: AssessmentRoute,
   DecisionsRoute: DecisionsRoute,
   EvidenceRoute: EvidenceRoute,
+  OverviewRoute: OverviewRoute,
   ProfileRoute: ProfileRoute,
+  ReviewIndexRoute: ReviewIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
