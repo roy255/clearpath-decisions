@@ -208,3 +208,14 @@ export function resetDemoData() {
   state = initial();
   emit();
 }
+
+export function updateProfile(appId: string, patch: Partial<Application["profile"]>) {
+  updateApp(appId, (a) => ({
+    ...a,
+    profile: { ...a.profile, ...patch },
+    reviewLog: [
+      logEvent("Applicant", "Profile updated", Object.keys(patch).join(", ")),
+      ...a.reviewLog,
+    ],
+  }));
+}
