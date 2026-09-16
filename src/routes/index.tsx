@@ -44,7 +44,7 @@ function Landing() {
           </span>
         </span>
         <nav className="flex items-center gap-2" aria-label="Primary">
-          <Button asChild variant="ghost" size="sm">
+          <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
             <Link to="/overview">Open workspace</Link>
           </Button>
           <Button asChild size="sm">
