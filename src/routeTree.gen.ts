@@ -11,6 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApplyRouteImport } from './routes/apply'
+import { Route as AssessmentRouteImport } from './routes/assessment'
+import { Route as DecisionsRouteImport } from './routes/decisions'
+import { Route as EvidenceRouteImport } from './routes/evidence'
 import { Route as ProfileRouteImport } from './routes/profile'
 
 const IndexRoute = IndexRouteImport.update({
@@ -23,6 +26,21 @@ const ApplyRoute = ApplyRouteImport.update({
   path: '/apply',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AssessmentRoute = AssessmentRouteImport.update({
+  id: '/assessment',
+  path: '/assessment',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DecisionsRoute = DecisionsRouteImport.update({
+  id: '/decisions',
+  path: '/decisions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EvidenceRoute = EvidenceRouteImport.update({
+  id: '/evidence',
+  path: '/evidence',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProfileRoute = ProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
@@ -32,30 +50,50 @@ const ProfileRoute = ProfileRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/apply': typeof ApplyRoute
+  '/assessment': typeof AssessmentRoute
+  '/decisions': typeof DecisionsRoute
+  '/evidence': typeof EvidenceRoute
   '/profile': typeof ProfileRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/apply': typeof ApplyRoute
+  '/assessment': typeof AssessmentRoute
+  '/decisions': typeof DecisionsRoute
+  '/evidence': typeof EvidenceRoute
   '/profile': typeof ProfileRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/apply': typeof ApplyRoute
+  '/assessment': typeof AssessmentRoute
+  '/decisions': typeof DecisionsRoute
+  '/evidence': typeof EvidenceRoute
   '/profile': typeof ProfileRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/apply' | '/profile'
+  fullPaths:
+    '/' | '/apply' | '/assessment' | '/decisions' | '/evidence' | '/profile'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/apply' | '/profile'
-  id: '__root__' | '/' | '/apply' | '/profile'
+  to: '/' | '/apply' | '/assessment' | '/decisions' | '/evidence' | '/profile'
+  id:
+    | '__root__'
+    | '/'
+    | '/apply'
+    | '/assessment'
+    | '/decisions'
+    | '/evidence'
+    | '/profile'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ApplyRoute: typeof ApplyRoute
+  AssessmentRoute: typeof AssessmentRoute
+  DecisionsRoute: typeof DecisionsRoute
+  EvidenceRoute: typeof EvidenceRoute
   ProfileRoute: typeof ProfileRoute
 }
 
@@ -75,6 +113,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApplyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/assessment': {
+      id: '/assessment'
+      path: '/assessment'
+      fullPath: '/assessment'
+      preLoaderRoute: typeof AssessmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/decisions': {
+      id: '/decisions'
+      path: '/decisions'
+      fullPath: '/decisions'
+      preLoaderRoute: typeof DecisionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/evidence': {
+      id: '/evidence'
+      path: '/evidence'
+      fullPath: '/evidence'
+      preLoaderRoute: typeof EvidenceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/profile': {
       id: '/profile'
       path: '/profile'
@@ -88,6 +147,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ApplyRoute: ApplyRoute,
+  AssessmentRoute: AssessmentRoute,
+  DecisionsRoute: DecisionsRoute,
+  EvidenceRoute: EvidenceRoute,
   ProfileRoute: ProfileRoute,
 }
 export const routeTree = rootRouteImport
