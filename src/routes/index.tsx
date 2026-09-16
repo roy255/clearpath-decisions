@@ -237,7 +237,7 @@ function Landing() {
                 </p>
                 <Button
                   asChild
-                  className="mt-4 w-full bg-primary-foreground font-bold text-background hover:bg-primary-foreground/90"
+                  className="mt-4 w-full bg-background font-bold text-foreground hover:bg-background/85"
                 >
                   <Link to="/apply">
                     Try the decision flow <ArrowRight className="size-4" aria-hidden />
