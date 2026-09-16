@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { motion } from "motion/react";
 import { CheckCircle2, CircleSlash, HelpCircle, RefreshCcw, Upload, UserSearch } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -59,7 +60,7 @@ function Column({
   empty,
 }: {
   tone: "success" | "warning" | "muted";
-  icon: React.ReactNode;
+  icon: ReactNode;
   title: string;
   items: string[];
   empty: string;
