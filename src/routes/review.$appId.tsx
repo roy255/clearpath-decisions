@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/select";
 import { assess, DECISION_META } from "@/lib/clearpath/engine";
 import { getScenario } from "@/lib/clearpath/scenarios";
-import { reviewerAction, useClearPath, type ReviewerAction } from "@/lib/clearpath/store";
+import { getApplication, reviewerAction, useClearPath, type ReviewerAction } from "@/lib/clearpath/store";
 import type { DecisionState } from "@/lib/clearpath/types";
 
 export const Route = createFileRoute("/review/$appId")({
@@ -79,7 +79,8 @@ function ReviewDetail() {
   const run = (action: ReviewerAction, requirementId?: string) => {
     const before = assessment.decision.state;
     const detail = reviewerAction(application.id, action, requirementId);
-    const after = assess({ ...(useStoreApp(application.id) ?? application) }).decision.state;
+    const next = getApplication(application.id) ?? application;
+    const after = assess(next).decision.state;
     setTransition({ from: before, to: after });
     toast.success("Reviewer action recorded", { description: detail });
   };
@@ -277,9 +278,4 @@ function ReviewerActionRow({ onRun }: { onRun: (action: ReviewerAction) => void 
       </Button>
     </div>
   );
-}
-
-/** Reads the freshest application snapshot after a mutation. */
-function useStoreApp(id: string) {
-  return useClearPath((s) => s.applications.find((a) => a.id === id) ?? null);
 }

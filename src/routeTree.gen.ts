@@ -18,6 +18,7 @@ import { Route as EvidenceRouteImport } from './routes/evidence'
 import { Route as OverviewRouteImport } from './routes/overview'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as ReviewIndexRouteImport } from './routes/review.index'
+import { Route as ReviewAppIdRouteImport } from './routes/review.$appId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -64,6 +65,11 @@ const ReviewIndexRoute = ReviewIndexRouteImport.update({
   path: '/review/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ReviewAppIdRoute = ReviewAppIdRouteImport.update({
+  id: '/review/$appId',
+  path: '/review/$appId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -74,6 +80,7 @@ export interface FileRoutesByFullPath {
   '/evidence': typeof EvidenceRoute
   '/overview': typeof OverviewRoute
   '/profile': typeof ProfileRoute
+  '/review/$appId': typeof ReviewAppIdRoute
   '/review/': typeof ReviewIndexRoute
 }
 export interface FileRoutesByTo {
@@ -85,6 +92,7 @@ export interface FileRoutesByTo {
   '/evidence': typeof EvidenceRoute
   '/overview': typeof OverviewRoute
   '/profile': typeof ProfileRoute
+  '/review/$appId': typeof ReviewAppIdRoute
   '/review': typeof ReviewIndexRoute
 }
 export interface FileRoutesById {
@@ -97,6 +105,7 @@ export interface FileRoutesById {
   '/evidence': typeof EvidenceRoute
   '/overview': typeof OverviewRoute
   '/profile': typeof ProfileRoute
+  '/review/$appId': typeof ReviewAppIdRoute
   '/review/': typeof ReviewIndexRoute
 }
 export interface FileRouteTypes {
@@ -110,6 +119,7 @@ export interface FileRouteTypes {
     | '/evidence'
     | '/overview'
     | '/profile'
+    | '/review/$appId'
     | '/review/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -121,6 +131,7 @@ export interface FileRouteTypes {
     | '/evidence'
     | '/overview'
     | '/profile'
+    | '/review/$appId'
     | '/review'
   id:
     | '__root__'
@@ -132,6 +143,7 @@ export interface FileRouteTypes {
     | '/evidence'
     | '/overview'
     | '/profile'
+    | '/review/$appId'
     | '/review/'
   fileRoutesById: FileRoutesById
 }
@@ -144,6 +156,7 @@ export interface RootRouteChildren {
   EvidenceRoute: typeof EvidenceRoute
   OverviewRoute: typeof OverviewRoute
   ProfileRoute: typeof ProfileRoute
+  ReviewAppIdRoute: typeof ReviewAppIdRoute
   ReviewIndexRoute: typeof ReviewIndexRoute
 }
 
@@ -212,6 +225,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReviewIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/review/$appId': {
+      id: '/review/$appId'
+      path: '/review/$appId'
+      fullPath: '/review/$appId'
+      preLoaderRoute: typeof ReviewAppIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -224,6 +244,7 @@ const rootRouteChildren: RootRouteChildren = {
   EvidenceRoute: EvidenceRoute,
   OverviewRoute: OverviewRoute,
   ProfileRoute: ProfileRoute,
+  ReviewAppIdRoute: ReviewAppIdRoute,
   ReviewIndexRoute: ReviewIndexRoute,
 }
 export const routeTree = rootRouteImport
