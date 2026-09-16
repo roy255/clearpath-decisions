@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { PlayCircle, Sparkles } from "lucide-react";
 import { toast } from "sonner";
@@ -17,7 +17,7 @@ import { loadDemo } from "@/lib/clearpath/store";
 export function DemoSelector({
   trigger,
 }: {
-  trigger?: React.ReactNode;
+  trigger?: ReactNode;
 }) {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState<DemoKey | null>(null);
