@@ -99,7 +99,7 @@ export function ReasoningPanel({ assessment }: { assessment: Assessment }) {
       <h2 className="text-lg font-semibold text-foreground">Why this decision?</h2>
       <p className="mt-1.5 text-sm text-muted-foreground">
         {blockers.length
-          ? `${blockers.length} blocker${blockers.length === 1 ? "" : "s"} currently prevent this application from proceeding.`
+          ? `${blockers.length} ${blockers.length === 1 ? "blocker currently prevents" : "blockers currently prevent"} this application from proceeding.`
           : "No blockers remain — every condition traces back to verified evidence."}
       </p>
 
