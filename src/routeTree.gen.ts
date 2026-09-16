@@ -17,7 +17,9 @@ import { Route as DecisionsRouteImport } from './routes/decisions'
 import { Route as EvidenceRouteImport } from './routes/evidence'
 import { Route as OverviewRouteImport } from './routes/overview'
 import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as ReviewIndexRouteImport } from './routes/review.index'
+import { Route as ReviewAppIdRouteImport } from './routes/review.$appId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -59,9 +61,19 @@ const ProfileRoute = ProfileRouteImport.update({
   path: '/profile',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ReviewIndexRoute = ReviewIndexRouteImport.update({
   id: '/review/',
   path: '/review/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReviewAppIdRoute = ReviewAppIdRouteImport.update({
+  id: '/review/$appId',
+  path: '/review/$appId',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -74,6 +86,8 @@ export interface FileRoutesByFullPath {
   '/evidence': typeof EvidenceRoute
   '/overview': typeof OverviewRoute
   '/profile': typeof ProfileRoute
+  '/settings': typeof SettingsRoute
+  '/review/$appId': typeof ReviewAppIdRoute
   '/review/': typeof ReviewIndexRoute
 }
 export interface FileRoutesByTo {
@@ -85,6 +99,8 @@ export interface FileRoutesByTo {
   '/evidence': typeof EvidenceRoute
   '/overview': typeof OverviewRoute
   '/profile': typeof ProfileRoute
+  '/settings': typeof SettingsRoute
+  '/review/$appId': typeof ReviewAppIdRoute
   '/review': typeof ReviewIndexRoute
 }
 export interface FileRoutesById {
@@ -97,6 +113,8 @@ export interface FileRoutesById {
   '/evidence': typeof EvidenceRoute
   '/overview': typeof OverviewRoute
   '/profile': typeof ProfileRoute
+  '/settings': typeof SettingsRoute
+  '/review/$appId': typeof ReviewAppIdRoute
   '/review/': typeof ReviewIndexRoute
 }
 export interface FileRouteTypes {
@@ -110,6 +128,8 @@ export interface FileRouteTypes {
     | '/evidence'
     | '/overview'
     | '/profile'
+    | '/settings'
+    | '/review/$appId'
     | '/review/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -121,6 +141,8 @@ export interface FileRouteTypes {
     | '/evidence'
     | '/overview'
     | '/profile'
+    | '/settings'
+    | '/review/$appId'
     | '/review'
   id:
     | '__root__'
@@ -132,6 +154,8 @@ export interface FileRouteTypes {
     | '/evidence'
     | '/overview'
     | '/profile'
+    | '/settings'
+    | '/review/$appId'
     | '/review/'
   fileRoutesById: FileRoutesById
 }
@@ -144,6 +168,8 @@ export interface RootRouteChildren {
   EvidenceRoute: typeof EvidenceRoute
   OverviewRoute: typeof OverviewRoute
   ProfileRoute: typeof ProfileRoute
+  SettingsRoute: typeof SettingsRoute
+  ReviewAppIdRoute: typeof ReviewAppIdRoute
   ReviewIndexRoute: typeof ReviewIndexRoute
 }
 
@@ -205,11 +231,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProfileRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/review/': {
       id: '/review/'
       path: '/review'
       fullPath: '/review/'
       preLoaderRoute: typeof ReviewIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/review/$appId': {
+      id: '/review/$appId'
+      path: '/review/$appId'
+      fullPath: '/review/$appId'
+      preLoaderRoute: typeof ReviewAppIdRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -224,6 +264,8 @@ const rootRouteChildren: RootRouteChildren = {
   EvidenceRoute: EvidenceRoute,
   OverviewRoute: OverviewRoute,
   ProfileRoute: ProfileRoute,
+  SettingsRoute: SettingsRoute,
+  ReviewAppIdRoute: ReviewAppIdRoute,
   ReviewIndexRoute: ReviewIndexRoute,
 }
 export const routeTree = rootRouteImport

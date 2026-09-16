@@ -115,7 +115,7 @@ export function assess(application: Application): Assessment {
       name: def.name,
       description: def.description,
       required: def.required,
-      evidence: { ...evidence, status: status === "MISSING" ? evidence.status : evidence.status },
+      evidence,
       evidenceLabel: def.evidenceLabel,
       status,
       confidence,

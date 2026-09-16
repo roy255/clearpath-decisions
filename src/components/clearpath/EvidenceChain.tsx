@@ -26,7 +26,7 @@ export function EvidenceChain({
 }: {
   applicantName: string;
   requirements: AssessedRequirement[];
-  onAction?: (requirementId: string, action: "UPLOAD" | "REPLACE" | "REVIEW") => void;
+  onAction?: ((requirementId: string, action: "UPLOAD" | "REPLACE" | "REVIEW") => void) | undefined;
 }) {
   const [selectedId, setSelectedId] = useState(requirements[0]?.id ?? "");
   const selected = requirements.find((r) => r.id === selectedId) ?? requirements[0];

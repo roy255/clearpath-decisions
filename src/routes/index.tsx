@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion } from "motion/react";
 import { ArrowRight, FileCheck2, GitBranch, ScanEye, ShieldCheck, UserRound } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DemoSelector } from "@/components/clearpath/DemoSelector";
@@ -45,7 +44,7 @@ function Landing() {
           </span>
         </span>
         <nav className="flex items-center gap-2" aria-label="Primary">
-          <Button asChild variant="ghost" size="sm">
+          <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
             <Link to="/overview">Open workspace</Link>
           </Button>
           <Button asChild size="sm">
@@ -58,37 +57,24 @@ function Landing() {
         <section className="hero-glow relative overflow-hidden border-y border-border">
           <div className="grid-lines absolute inset-0 opacity-40" aria-hidden />
           <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
-            <motion.p
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="eyebrow"
-            >
+            <p className="eyebrow animate-in fade-in duration-500">
               Evidence intelligence for public services
-            </motion.p>
-            <motion.h1
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.05 }}
-              className="mt-4 max-w-3xl text-4xl font-semibold leading-[1.05] text-foreground sm:text-6xl"
+            </p>
+            <h1
+              className="animate-in fade-in slide-in-from-bottom-2 duration-700 mt-4 max-w-3xl text-4xl font-semibold leading-[1.05] text-foreground sm:text-6xl"
             >
               From evidence to{" "}
               <span className="text-gradient">decision</span>.
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground"
+            </h1>
+            <p
+              className="animate-in fade-in slide-in-from-bottom-2 duration-700 mt-6 max-w-xl text-base leading-relaxed text-muted-foreground"
             >
               Know what is proven. Understand what is missing. Move your application forward — with the
               reasoning between evidence and outcome made visible.
-            </motion.p>
+            </p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.15 }}
-              className="mt-8 flex flex-wrap items-center gap-3"
+            <div
+              className="animate-in fade-in slide-in-from-bottom-2 duration-700 mt-8 flex flex-wrap items-center gap-3"
             >
               <Button asChild size="lg">
                 <Link to="/apply">
@@ -102,7 +88,7 @@ function Landing() {
                   </Button>
                 }
               />
-            </motion.div>
+            </div>
 
             <div className="mt-16">
               <p className="eyebrow mb-4 flex items-center gap-2">
@@ -110,18 +96,16 @@ function Landing() {
               </p>
               <ol className="grid gap-3 sm:grid-cols-3 lg:grid-cols-5">
                 {chain.map((node, i) => (
-                  <motion.li
+                  <li
                     key={node.label}
-                    initial={{ opacity: 0, y: 12 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2 + i * 0.08 }}
-                    className="panel relative p-4"
+                    className="panel animate-in fade-in slide-in-from-bottom-2 relative p-4 duration-700"
+                    style={{ animationDelay: `${i * 70}ms` }}
                   >
                     <span className="num text-[10px] text-primary">0{i + 1}</span>
                     <node.icon className="mt-3 size-4 text-primary" aria-hidden />
                     <p className="mt-3 text-sm font-medium text-foreground">{node.label}</p>
                     <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{node.detail}</p>
-                  </motion.li>
+                  </li>
                 ))}
               </ol>
             </div>

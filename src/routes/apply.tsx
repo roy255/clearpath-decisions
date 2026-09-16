@@ -55,7 +55,7 @@ function ScenarioSelection() {
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {scenarios.map((scenario, i) => {
-          const Icon = icons[scenario.icon];
+          const Icon = icons[scenario.icon] ?? GraduationCap;
           return (
             <motion.article
               key={scenario.id}
